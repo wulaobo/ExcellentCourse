@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cuit.dao.SourceMapper">
+
+	<resultMap type="Source" id="SourceResult">
+		<result property="id" column="id"/>
+		<result property="filename" column="filename"/>
+		<result property="pubtime" column="pubtime"/>
+	</resultMap>
+	
+	<insert id="addSource" parameterType="Source">
+		insert into t_source (filename,pubtime) 
+		values (#{filename},#{pubtime})
+	</insert>
+	
+	<select id="findAll" resultType="Source">
+		select * from t_source
+	</select>
+
+	<select id="findSourceById" parameterType="java.lang.Integer" resultType="Source">
+		select * from t_source where id=#{id}
+	</select>
+
+	<delete id="deleteSourceById" parameterType="java.lang.Integer">
+		delete from t_source where id=#{id}
+	</delete>
+
+</mapper>

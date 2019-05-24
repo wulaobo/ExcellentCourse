@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		 <!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!-- 使用jdbc的getGeneratedKeys获取数据库自增主键值 -->
+        <setting name="useGeneratedKeys" value="true" />
+	</settings>
+    <!-- 为JavaBean起类别名 -->
+    <typeAliases>
+        <package name="com.cuit.domain" />
+    </typeAliases> 
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins> 
+    <!-- 通过 mapper 接口包加载整个包的映射文件 
+    <mappers>
+        <package name="com/cuit/mapper" />
+    </mappers>--> 
+</configuration>

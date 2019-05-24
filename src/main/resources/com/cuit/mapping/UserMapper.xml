@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cuit.dao.UserMapper">
+
+	<resultMap type="User" id="UserResult">
+		<result property="id" column="id"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+	</resultMap>
+	
+	<select id="getRolesByusername" parameterType="String" resultType="String">
+		select r.roleName from t_user u,t_role r where u.roleId=r.id and u.username=#{username}
+	</select>
+	
+	<select id="getPermissionsByusername" parameterType="String" resultType="String">
+		select p.permissionName from t_user u,t_role r,t_permission p where u.roleId=r.id and p.roleId=r.id and u.username=#{username}
+	</select>
+	
+	<select id="getUserByusername" parameterType="String" resultMap="UserResult">
+		select * from t_user where username=#{username}
+	</select>
+	
+	<insert id="addUser" parameterType="User">
+		insert into t_user(username,password,email) 
+		values(#{username},#{password},#{email})
+	</insert>
+	
+	<update id="update" parameterType="User">    
+        update t_user set username=#{username},password=#{password},email=#{email} where id=#{id}    
+    </update>
+    
+    <select id="findAll" resultType="User">    
+        select * from t_user    
+    </select>
+    
+    <delete id="delete" parameterType="int">
+    	delete from t_user where id=#{id }
+    </delete>
+    
+    <update id="changer" parameterType="User">
+    	update t_user set roleId=#{roleId} where id=#{id }
+    </update>
+    
+    <update id="changes" parameterType="User">
+    	update t_user set state=#{state} where id=#{id }
+    </update>
+    
+    <update id="changeKey" parameterType="User">    
+        update t_user set password=#{password} where id=#{id}
+    </update>
+    
+    <select id="selectByName" parameterType="String" resultType="User">
+    	select * from t_user where username like '%${_parameter}%'
+    </select>
+</mapper> 

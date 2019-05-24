@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+/*设置body，不要让导航条（默认50px）压到下面的内容*/
+   body { padding-top: 70px; }
+
+  /*轮播图片设置大小*/
+  .carousel-inner .item img {
+	  height: 400px;
+	  width: 100%;
+  }
+  /*调整圆角图片大小*/
+  .img-circle {
+	  width: 250px;  
+  }
+  /*版权信息*/
+  #copyright {
+	  background-color: #202020;
+	  height: 100px;
+	  color: #524f4f;
+	  text-align: center;
+	  font-size: 10px;
+	  padding-top: 6px;
+  }
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cuit.dao.VideoMapper">
+	<resultMap type="FileEntity" id="FileResult">
+		<result property="id" column="id" />
+		<result property="titleOrig" column="titleOrig" />
+		<result property="titleAlter" column="titleAlter" />
+		<result property="size" column="size" />
+		<result property="type" column="type" />
+		<result property="path" column="path" />
+		<result property="uploadTime" column="uploadTime" />
+	</resultMap>
+	
+	<insert id="saveFile"  parameterType="FileEntity">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	 	insert into t_video (titleOrig,titleAlter,size,type,path,uploadTime) values(#{titleOrig},#{titleAlter},#{size},#{type},#{path},#{uploadTime})
+	</insert>
+
+	<select id="findAll" resultType="FileEntity">
+		select * from t_video
+	</select>
+	
+	<select id="findById" resultType="FileEntity">
+		select * from t_video where id=#{id}
+	</select>
+
+	<delete id="deleteVideoById" parameterType="java.lang.Integer">
+         delete from t_video where id=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+body{background: url(../img/bg.jpg) no-repeat;background-size:cover;font-size: 16px;}
+
+.form{
+    background: rgba(255,255,255,0.4);
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.errorMsg{
+	color:red;
+}
+

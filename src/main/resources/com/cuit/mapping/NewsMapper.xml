@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cuit.dao.NewsMapper">
+
+	<resultMap type="News" id="NewsResult">
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="article" column="article"/>
+		<result property="time" column="time"/>
+	</resultMap>
+	
+	<insert id="writeNews" parameterType="News">
+		insert into t_news (title,article,time)
+    	values(#{title},#{article},#{time})
+	</insert>
+	
+	<select id="selectAllNews" resultType="News">
+		select * from t_news
+	</select>
+	
+	<delete id="deleteNewsById" parameterType="int">
+		delete from t_news where id=#{id}
+	</delete>
+	
+	<select id="findById" parameterType="int" resultType="News">
+		select * from t_news where id=#{id}
+	</select>
+	
+	<select id="selectNewsById" parameterType="int" resultType="News">
+		select * from t_news where id=#{id}
+	</select>
+	
+	<update id="updateNews" parameterType="News">
+		update t_news set title=#{title},article=#{article} where id=#{id}
+	</update>
+    
+    <select id="selectByTitle" parameterType="String" resultType="News">
+    	select * from t_news where title like '%${_parameter}%'
+    </select>
+</mapper>
